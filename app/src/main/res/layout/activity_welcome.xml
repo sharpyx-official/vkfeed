@@ -31,6 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
+        android:minWidth="150dp"
         android:text="@string/btn_log_in"
         android:theme="@style/AppTheme.WhiteButton"/>
 
