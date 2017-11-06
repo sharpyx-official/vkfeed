@@ -1,7 +1,8 @@
-package com.sharpyx.vkfeed
+package com.sharpyx.vkfeed.ui.welcome
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.sharpyx.vkfeed.R
 
 class WelcomeActivity : AppCompatActivity() {
 
