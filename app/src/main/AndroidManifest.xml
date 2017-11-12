@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="com.sharpyx.vkfeed.presentation.view.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.welcome.WelcomeActivity"
+            android:name="com.sharpyx.vkfeed.presentation.view.welcome.WelcomeActivity"
             android:theme="@style/VkNoActionBarTheme">
 
         </activity>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgPrimary"
-    tools:context="com.sharpyx.vkfeed.ui.welcome.WelcomeActivity">
+    tools:context=".presentation.view.welcome.WelcomeActivity">
 
     <ImageView
         android:id="@+id/ivLogo"
