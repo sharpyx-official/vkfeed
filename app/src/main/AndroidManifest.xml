@@ -5,15 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".App">
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.sharpyx.vkfeed.presentation.view.splash.SplashActivity"
+            android:name=".presentation.view.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sharpyx.vkfeed.presentation.view.welcome.WelcomeActivity"
-            android:theme="@style/VkNoActionBarTheme">
-        </activity>
+            android:name=".presentation.view.welcome.WelcomeActivity"
+            android:theme="@style/VkNoActionBarTheme"></activity>
         <!-- VK Service activity -->
         <activity
             android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
+        <activity android:name=".presentation.view.news.NewsActivity"></activity>
     </application>
 
 </manifest>
