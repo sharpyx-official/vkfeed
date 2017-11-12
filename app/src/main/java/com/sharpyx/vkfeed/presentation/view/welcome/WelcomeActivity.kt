@@ -1,11 +1,12 @@
 package com.sharpyx.vkfeed.presentation.view.welcome
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.sharpyx.vkfeed.R
 import com.sharpyx.vkfeed.extension.toast
+import com.sharpyx.vkfeed.presentation.presenter.WelcomePresenter
 import com.vk.sdk.VKAccessToken
 import com.vk.sdk.VKCallback
 import com.vk.sdk.VKScope
@@ -17,15 +18,17 @@ import kotlinx.android.synthetic.main.activity_welcome.*
  * Welcome activity for authorization feature
  * @author Artem Sckopincev (aka sharpyx)
  */
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : MvpAppCompatActivity(), IWelcomeView {
+
+    @InjectPresenter
+    lateinit var welcomePresenter: WelcomePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        btnLogIn.setOnClickListener {
-            VKSdk.login(this, VKScope.FRIENDS, VKScope.WALL)
-        }
+        // start auth dialog
+        btnLogIn.setOnClickListener { welcomePresenter.startAuth() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -38,16 +41,33 @@ class WelcomeActivity : AppCompatActivity() {
     private fun onVkActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val callback = object : VKCallback<VKAccessToken> {
             override fun onResult(res: VKAccessToken?) {
-                toast("Auth is successfully finished!")
-                Log.d("VKAuth", "res: " + res?.accessToken)
+                welcomePresenter.onAuthResult(res)
             }
 
             override fun onError(error: VKError?) {
-                toast("Auth failed. Error description in logs.")
-                Log.d("VKAuth", "Error on auth: \n" + error.toString())
+                welcomePresenter.onAuthError(error)
             }
         }
 
         VKSdk.onActivityResult(requestCode, resultCode, data, callback)
+    }
+
+    override fun showAuthDialog() {
+        VKSdk.login(this, VKScope.WALL, VKScope.FRIENDS)
+    }
+
+    override fun authFinished() {
+        toast("Auth has finished!")
+        // TODO: start activity with list of news
+    }
+
+    override fun authError(error: String?) {
+        var msg = getString(R.string.msg_error)
+
+        if (error != null) {
+            msg += "\n $error"
+        }
+
+        toast(msg)
     }
 }

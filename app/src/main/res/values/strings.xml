@@ -5,4 +5,6 @@
 
     <string name="btn_log_in">Войти</string>
     <string name="app_description">Комфортная читалка новостей \n для социальной сети ВКонтакте</string>
+
+    <string name="msg_error">Ошибка :(</string>
 </resources>
