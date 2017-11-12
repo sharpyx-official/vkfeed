@@ -1,4 +1,6 @@
 <resources>
+    <integer name="com_vk_sdk_AppId">6256799</integer>
+
     <string name="app_name">Vk Feed</string>
 
     <string name="btn_log_in">Войти</string>
