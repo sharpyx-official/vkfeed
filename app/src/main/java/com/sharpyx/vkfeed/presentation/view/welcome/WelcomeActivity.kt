@@ -10,6 +10,7 @@ import com.sharpyx.vkfeed.R
 import com.sharpyx.vkfeed.di.component.DaggerActivityComponent
 import com.sharpyx.vkfeed.extension.toast
 import com.sharpyx.vkfeed.presentation.presenter.WelcomePresenter
+import com.sharpyx.vkfeed.presentation.view.news.NewsActivity
 import com.vk.sdk.VKAccessToken
 import com.vk.sdk.VKCallback
 import com.vk.sdk.VKScope
@@ -68,12 +69,13 @@ class WelcomeActivity : MvpAppCompatActivity(), IWelcomeView {
         VKSdk.login(this, VKScope.WALL, VKScope.FRIENDS)
     }
 
-    override fun authFinished() {
-        toast("Auth has finished!")
-        // TODO: start activity with list of news
+    override fun startNewsActivity() {
+        val intent = Intent(this, NewsActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
-    override fun authError(error: String?) {
+    override fun showAuthError(error: String?) {
         var msg = getString(R.string.msg_error)
 
         if (error != null) {

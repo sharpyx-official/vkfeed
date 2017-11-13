@@ -12,9 +12,9 @@ interface IWelcomeView : MvpView {
     fun showAuthDialog()
 
     // Auth successfully finished
-    fun authFinished()
+    fun startNewsActivity()
 
     // Auth error
-    fun authError(error: String?)
+    fun showAuthError(error: String?)
 
 }

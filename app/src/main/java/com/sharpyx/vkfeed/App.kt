@@ -11,7 +11,7 @@ import com.vk.sdk.VKSdk
  */
 class App : Application() {
 
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()

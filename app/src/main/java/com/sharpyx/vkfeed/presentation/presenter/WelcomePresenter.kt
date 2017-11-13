@@ -22,15 +22,17 @@ class WelcomePresenter @Inject constructor(
 
     fun onAuthResult(token: VKAccessToken?) {
         if (token == null) {
-            viewState.authError(null)
+            viewState.showAuthError(null)
             return
         }
 
-        viewState.authFinished()
+        userInteractor.logIn(token.accessToken)
+
+        viewState.startNewsActivity()
     }
 
     fun onAuthError(error: VKError?) {
-        viewState.authError(error!!.errorMessage)
+        viewState.showAuthError(error!!.errorMessage)
     }
 
 }
