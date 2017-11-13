@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sharpyx.vkfeed.data.network.VkApi
 import com.sharpyx.vkfeed.data.network.interceptor.TokenQueryInterceptor
-import com.sharpyx.vkfeed.repositories.UserRepository
+import com.sharpyx.vkfeed.data.prefs.SharedPrefsHelper
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -27,8 +27,8 @@ class ServerModule {
     }
 
     @Provides
-    fun provideOkHttpClient(repository: UserRepository): OkHttpClient {
-        val token = repository.getAccessToken()
+    fun provideOkHttpClient(prefs: SharedPrefsHelper): OkHttpClient {
+        val token = prefs.getString(SharedPrefsHelper.KEY_ACCESS_TOKEN)
         val builder = OkHttpClient.Builder()
         builder.addNetworkInterceptor(TokenQueryInterceptor(token))
         builder.readTimeout(30, TimeUnit.SECONDS)
