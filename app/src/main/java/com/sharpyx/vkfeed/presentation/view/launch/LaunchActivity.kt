@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.sharpyx.vkfeed.App
+import com.sharpyx.vkfeed.di.component.DaggerActivityComponent
 import com.sharpyx.vkfeed.presentation.presenter.LaunchPresenter
 import com.sharpyx.vkfeed.presentation.view.news.NewsActivity
 import com.sharpyx.vkfeed.presentation.view.welcome.WelcomeActivity
@@ -17,7 +20,14 @@ class LaunchActivity : MvpAppCompatActivity(), ILaunchView {
     @InjectPresenter
     lateinit var launchPresenter: LaunchPresenter
 
-    // TODO: provide presenter
+    @ProvidePresenter
+    fun providePresenter(): LaunchPresenter {
+        val interactor = DaggerActivityComponent.builder()
+                .appComponent((applicationContext as App).getComponent())
+                .build()
+                .getUserInteractor()
+        return LaunchPresenter(interactor)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

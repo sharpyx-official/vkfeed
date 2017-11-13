@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.sharpyx.vkfeed.App
 import com.sharpyx.vkfeed.R
+import com.sharpyx.vkfeed.di.component.DaggerActivityComponent
 import com.sharpyx.vkfeed.extension.toast
 import com.sharpyx.vkfeed.presentation.presenter.WelcomePresenter
 import com.vk.sdk.VKAccessToken
@@ -22,6 +25,15 @@ class WelcomeActivity : MvpAppCompatActivity(), IWelcomeView {
 
     @InjectPresenter
     lateinit var welcomePresenter: WelcomePresenter
+
+    @ProvidePresenter
+    fun providePresenter(): WelcomePresenter {
+        val interactor = DaggerActivityComponent.builder()
+                .appComponent((applicationContext as App).getComponent())
+                .build()
+                .getUserInteractor()
+        return WelcomePresenter(interactor)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
