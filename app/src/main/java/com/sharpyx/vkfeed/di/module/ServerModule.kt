@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit
 /**
  * @author Artem Sckopincev (aka sharpyx)
  */
+
 @Module
 class ServerModule {
 

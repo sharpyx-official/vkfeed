@@ -6,6 +6,8 @@ import com.sharpyx.vkfeed.App
 import com.sharpyx.vkfeed.data.prefs.SharedPrefsHelper
 import com.sharpyx.vkfeed.di.ApplicationContext
 import com.sharpyx.vkfeed.di.module.AppModule
+import com.sharpyx.vkfeed.di.module.ModelModule
+import com.sharpyx.vkfeed.di.module.ServerModule
 import dagger.Component
 import javax.inject.Singleton
 

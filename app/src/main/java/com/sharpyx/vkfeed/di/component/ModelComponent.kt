@@ -1,7 +1,7 @@
 package com.sharpyx.vkfeed.di.component
 
-import com.sharpyx.vkfeed.data.network.VkApi
 import com.sharpyx.vkfeed.di.module.AppModule
+import com.sharpyx.vkfeed.di.module.ModelModule
 import com.sharpyx.vkfeed.di.module.ServerModule
 import dagger.Component
 import javax.inject.Singleton
@@ -11,7 +11,5 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class, ServerModule::class))
-interface ModelComponent {
-    fun getApi(): VkApi
-}
+@Component(modules = arrayOf(AppModule::class, ServerModule::class, ModelModule::class))
+interface ModelComponent
